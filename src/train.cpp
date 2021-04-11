@@ -73,8 +73,7 @@ void Train::addCage() {
       b->set_next(a);
       b->set_prev(a);
       this->set_last(a);
-    }
-    else {
+    } else {
       Cage* a = new Cage(rand_r(&time(0))%2);
       last->set_next(a);
       first->set_prev(a);
