@@ -66,7 +66,7 @@ void Train::addCage() {
     a->set_next(b);
     a->set_prev(b);
     b->set_next(a);
-    b->set_prev(a);    
+    b->set_prev(a);
     this->set_last(a);
   }
   else {
@@ -86,14 +86,14 @@ void Train::addCage(int count) {
 Train::Train(int count) {
   first = nullptr;
   last = nullptr;
-  addCage (count);
+  addCage(count);
 }
 
-void Train::print(int n) const{
+void Train::print(int n) const {
   Cage* a = get_first();
-  if (a != nullptr){
+  if (a != nullptr) {
     for (size_t i = 0; i < n; ++i) {
-      std::cout<<"Вагон номер: "<<i+1<<". Лампочка: "<<a->get()<<std::endl;
+      std::cout << "Вагон номер: " << i+1 << ". Лампочка: " << a->get() << std::endl;
       a = a->get_next();
     }
   }
@@ -104,7 +104,7 @@ int Train::get() const {
   if (a == nullptr) return 0;
   int i;
   a->off();
-  while (a->get() == false) { 
+  while (a->get() == false) {
     i = 0;
     a = a->get_next();
     i++;
@@ -114,7 +114,7 @@ int Train::get() const {
     }
     a->on();
     for (size_t j = i ; j > 0; --j) a = a->get_prev();
-  } 
-   return i; 
+  }
+  return i;
 }
 

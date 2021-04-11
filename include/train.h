@@ -2,13 +2,12 @@
 #ifndef INCLUDE_TRAIN_H_
 #define INCLUDE_TRAIN_H_
 
-class Cage
-{
-private:
-    bool light; 
-    Cage* next; 
-    Cage* prev; 
-public:
+class Cage {
+ private:
+    bool light;
+    Cage* next;
+    Cage* prev;
+ public:
     Cage(bool l = false);
     void on();
     void off();
@@ -19,12 +18,11 @@ public:
     Cage* get_prev() const;
 };
 
-class Train 
-{
-private:
+class Train {
+ private:
     Cage* first;
-    Cage* last; 
-public:
+    Cage* last;
+ public:
     void set_first(Cage*);
     void set_last(Cage*);
     Cage* get_first() const;
@@ -34,5 +32,6 @@ public:
     Train(int count = 0);
     void print(int) const;
     int get() const;
-}
+};
+
 #endif  // INCLUDE_TRAIN_H_

@@ -6,7 +6,7 @@
 
 int main() {
   Train a(3);
-  cout<<a.get();
+  cout << a.get();
   return 0;
 }
 
