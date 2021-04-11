@@ -59,8 +59,8 @@ void Train::addCage() {
   srand(time(0));
   if (this->get_first() == nullptr) {
     set_first(new Cage(rand()%2));
-  }
-  else if (this->get_last() == nullptr) {
+  } else
+  if (this->get_last() == nullptr) {
     Cage* a = new Cage(rand()%2);
     Cage* b = this->get_first();
     a->set_next(b);
@@ -68,8 +68,7 @@ void Train::addCage() {
     b->set_next(a);
     b->set_prev(a);
     this->set_last(a);
-  }
-  else {
+  } else {
     Cage* a = new Cage(rand()%2);
     this->get_last()->set_next(a);
     this->get_first()->set_prev(a);
@@ -79,7 +78,7 @@ void Train::addCage() {
 
 void Train::addCage(int count) {
   for (size_t i = 0; i < count; ++i) {
-    this->addCage();    
+    this->addCage();
   }
 }
 
@@ -93,7 +92,8 @@ void Train::print(int n) const {
   Cage* a = get_first();
   if (a != nullptr) {
     for (size_t i = 0; i < n; ++i) {
-      std::cout << "Вагон номер: " << i+1 << ". Лампочка: " << a->get() << std::endl;
+      std::cout << "Вагон номер: " << i+1 << ". Лампочка: "
+                << a->get() << std::endl;
       a = a->get_next();
     }
   }
