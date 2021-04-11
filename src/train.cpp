@@ -20,8 +20,8 @@ void Cage::off() {
 }
 
 void Cage::changeLight() {
-  if (light) off()
-  else 
+  if (light) off();
+  else
     on();
 }
 
@@ -62,12 +62,11 @@ Cage* Train::get_last() const {
 }
 
 void Train::addCage() {
-  srand(time(0));
   if (first == nullptr) {
-    set_first(new Cage(rand()%2));
+    set_first(new Cage(rand_r(&time(0))%2));
   } else {
     if (last== nullptr) {
-      Cage* a = new Cage(rand()%2);
+      Cage* a = new Cage(rand_r(&time(0))%2);
       Cage* b = this->get_first();
       a->set_next(b);
       a->set_prev(b);
@@ -75,11 +74,12 @@ void Train::addCage() {
       b->set_prev(a);
       this->set_last(a);
     }
-  } else {
-    Cage* a = new Cage(rand()%2);
-    last->set_next(a);
-    first->set_prev(a);
-    set_last(a);
+    else {
+      Cage* a = new Cage(rand_r(&time(0))%2);
+      last->set_next(a);
+      first->set_prev(a);
+      set_last(a);
+    }
   }
 }
 
