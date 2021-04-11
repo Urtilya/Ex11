@@ -19,6 +19,11 @@ void Cage::off() {
   light = false;
 }
 
+void Cage::changeLight() {
+  if (light) off()
+  else on();
+}
+
 bool Cage::get() const {
   return light;
 }
@@ -57,10 +62,10 @@ Cage* Train::get_last() const {
 
 void Train::addCage() {
   srand(time(0));
-  if (this->get_first() == nullptr) {
+  if (first == nullptr) {
     set_first(new Cage(rand()%2));
   } else
-  if (this->get_last() == nullptr) {
+  if (last== nullptr) {
     Cage* a = new Cage(rand()%2);
     Cage* b = this->get_first();
     a->set_next(b);
@@ -70,9 +75,9 @@ void Train::addCage() {
     this->set_last(a);
   } else {
     Cage* a = new Cage(rand()%2);
-    this->get_last()->set_next(a);
-    this->get_first()->set_prev(a);
-    this->set_last(a);
+    last->set_next(a);
+    first>set_prev(a);
+    set_last(a);
   }
 }
 
@@ -100,21 +105,22 @@ void Train::print(int n) const {
 }
 
 int Train::get() const {
-  Cage* a = get_first();
-  if (a == nullptr) return 0;
-  int i;
-  a->off();
-  while (a->get() == false) {
-    i = 0;
-    a = a->get_next();
-    i++;
-    while (a->get() == true) {
-      a = a->get_next();
-      i++;
-    }
-    a->on();
-    for (size_t j = i ; j > 0; --j) a = a->get_prev();
+  if (first == nullptr) {
+      return 0;
   }
-  return i;
+  unsigned length;
+  unsigned counter = 0;
+  Cage* ptr = first;
+  first->off();
+  while (true) {
+      ptr = ptr->get_next();
+      counter++;
+      ptr->changeLight();
+      Cage* back = ptr;
+      for (size_t i = 0; i < counter; ++i) {
+          back = back->get_prev();
+      }
+      if (back->get() != false) return counter;
+  }
 }
 

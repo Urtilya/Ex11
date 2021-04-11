@@ -11,6 +11,7 @@ class Cage {
     explicit Cage(bool l = false);
     void on();
     void off();
+    void changeLight();
     void set_next(Cage*);
     void set_prev(Cage*);
     bool get() const;
