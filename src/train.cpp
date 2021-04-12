@@ -77,6 +77,8 @@ void Train::addCage() {
     } else {
       Cage* a = new Cage(rand_r(&seed)%2);
       last->set_next(a);
+      a->set_prev(last);
+      a->set_next(first);
       first->set_prev(a);
       set_last(a);
     }
